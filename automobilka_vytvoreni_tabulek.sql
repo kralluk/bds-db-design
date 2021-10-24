@@ -119,28 +119,6 @@ CREATE TABLE IF NOT EXISTS "customer" (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-
-
-
--- -----------------------------------------------------
--- Table "mydb"."manager"
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "manager" (
-  "manager_id" BIGSERIAL NOT NULL,
-  "manager_firstname" VARCHAR(45) NOT NULL,
-  "manager_surname" VARCHAR(45) NOT NULL,
-  "salary" FLOAT NOT NULL,
-  "building_id" BIGSERIAL NOT NULL,
-  PRIMARY KEY ("manager_id", "building_id"),
-	UNIQUE("manager_id"),
-  CONSTRAINT "building_id"
-    FOREIGN KEY ("building_id")
-    REFERENCES "building" ("building_id")
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
-
 -- -----------------------------------------------------
 -- Table "mydb"."car_in_building"
 -- -----------------------------------------------------
@@ -152,6 +130,8 @@ ALTER TABLE "car"
 	ADD CONSTRAINT "customer_id"
 	FOREIGN KEY ("customer_id") 
 	REFERENCES "customer" ("customer_id");
+
+alter table car alter column customer_id drop not null;
 
 
 
